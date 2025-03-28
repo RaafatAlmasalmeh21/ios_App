@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C0F158222D96F7FD00605B38 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C0F158212D96F7FD00605B38 /* GoogleGenerativeAI */; };
+		C0F158242D96F82700605B38 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C0F158232D96F82700605B38 /* GoogleGenerativeAI */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C003FEBC2D959ACB00731C38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C003FEA32D959ACA00731C38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C003FEAA2D959ACA00731C38;
+			remoteInfo = AiTrading;
+		};
+		C003FEC62D959ACB00731C38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C003FEA32D959ACA00731C38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C003FEAA2D959ACA00731C38;
+			remoteInfo = AiTrading;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C003FEAB2D959ACA00731C38 /* AiTrading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiTrading.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C003FEBB2D959ACB00731C38 /* AiTradingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiTradingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C003FEC52D959ACB00731C38 /* AiTradingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiTradingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C003FEAD2D959ACA00731C38 /* AiTrading */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AiTrading;
+			sourceTree = "<group>";
+		};
+		C003FEBE2D959ACB00731C38 /* AiTradingTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AiTradingTests;
+			sourceTree = "<group>";
+		};
+		C003FEC82D959ACB00731C38 /* AiTradingUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AiTradingUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C003FEA82D959ACA00731C38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0F158222D96F7FD00605B38 /* GoogleGenerativeAI in Frameworks */,
+				C0F158242D96F82700605B38 /* GoogleGenerativeAI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEB82D959ACB00731C38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEC22D959ACB00731C38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C003FEA22D959ACA00731C38 = {
+			isa = PBXGroup;
+			children = (
+				C003FEAD2D959ACA00731C38 /* AiTrading */,
+				C003FEBE2D959ACB00731C38 /* AiTradingTests */,
+				C003FEC82D959ACB00731C38 /* AiTradingUITests */,
+				C003FEAC2D959ACA00731C38 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C003FEAC2D959ACA00731C38 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C003FEAB2D959ACA00731C38 /* AiTrading.app */,
+				C003FEBB2D959ACB00731C38 /* AiTradingTests.xctest */,
+				C003FEC52D959ACB00731C38 /* AiTradingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C003FEAA2D959ACA00731C38 /* AiTrading */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C003FECF2D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTrading" */;
+			buildPhases = (
+				C003FEA72D959ACA00731C38 /* Sources */,
+				C003FEA82D959ACA00731C38 /* Frameworks */,
+				C003FEA92D959ACA00731C38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C003FEAD2D959ACA00731C38 /* AiTrading */,
+			);
+			name = AiTrading;
+			packageProductDependencies = (
+				C0F158212D96F7FD00605B38 /* GoogleGenerativeAI */,
+				C0F158232D96F82700605B38 /* GoogleGenerativeAI */,
+			);
+			productName = AiTrading;
+			productReference = C003FEAB2D959ACA00731C38 /* AiTrading.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C003FEBA2D959ACB00731C38 /* AiTradingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C003FED22D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTradingTests" */;
+			buildPhases = (
+				C003FEB72D959ACB00731C38 /* Sources */,
+				C003FEB82D959ACB00731C38 /* Frameworks */,
+				C003FEB92D959ACB00731C38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C003FEBD2D959ACB00731C38 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C003FEBE2D959ACB00731C38 /* AiTradingTests */,
+			);
+			name = AiTradingTests;
+			packageProductDependencies = (
+			);
+			productName = AiTradingTests;
+			productReference = C003FEBB2D959ACB00731C38 /* AiTradingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C003FEC42D959ACB00731C38 /* AiTradingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C003FED52D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTradingUITests" */;
+			buildPhases = (
+				C003FEC12D959ACB00731C38 /* Sources */,
+				C003FEC22D959ACB00731C38 /* Frameworks */,
+				C003FEC32D959ACB00731C38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C003FEC72D959ACB00731C38 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C003FEC82D959ACB00731C38 /* AiTradingUITests */,
+			);
+			name = AiTradingUITests;
+			packageProductDependencies = (
+			);
+			productName = AiTradingUITests;
+			productReference = C003FEC52D959ACB00731C38 /* AiTradingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C003FEA32D959ACA00731C38 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					C003FEAA2D959ACA00731C38 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					C003FEBA2D959ACB00731C38 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = C003FEAA2D959ACA00731C38;
+					};
+					C003FEC42D959ACB00731C38 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = C003FEAA2D959ACA00731C38;
+					};
+				};
+			};
+			buildConfigurationList = C003FEA62D959ACA00731C38 /* Build configuration list for PBXProject "AiTrading" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+			);
+			mainGroup = C003FEA22D959ACA00731C38;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C0F158202D96F5B800605B38 /* XCLocalSwiftPackageReference "../../Downloads/generative-ai-swift-main" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C003FEAC2D959ACA00731C38 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C003FEAA2D959ACA00731C38 /* AiTrading */,
+				C003FEBA2D959ACB00731C38 /* AiTradingTests */,
+				C003FEC42D959ACB00731C38 /* AiTradingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C003FEA92D959ACA00731C38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEB92D959ACB00731C38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEC32D959ACB00731C38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C003FEA72D959ACA00731C38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEB72D959ACB00731C38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003FEC12D959ACB00731C38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C003FEBD2D959ACB00731C38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C003FEAA2D959ACA00731C38 /* AiTrading */;
+			targetProxy = C003FEBC2D959ACB00731C38 /* PBXContainerItemProxy */;
+		};
+		C003FEC72D959ACB00731C38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C003FEAA2D959ACA00731C38 /* AiTrading */;
+			targetProxy = C003FEC62D959ACB00731C38 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C003FECD2D959ACB00731C38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C003FECE2D959ACB00731C38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C003FED02D959ACB00731C38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AiTrading/Preview Content\"";
+				DEVELOPMENT_TEAM = HALH4Z52JZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture charts for AI analysis";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTrading;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C003FED12D959ACB00731C38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AiTrading/Preview Content\"";
+				DEVELOPMENT_TEAM = HALH4Z52JZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture charts for AI analysis";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTrading;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C003FED32D959ACB00731C38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTradingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AiTrading.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AiTrading";
+			};
+			name = Debug;
+		};
+		C003FED42D959ACB00731C38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTradingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AiTrading.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AiTrading";
+			};
+			name = Release;
+		};
+		C003FED62D959ACB00731C38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTradingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AiTrading;
+			};
+			name = Debug;
+		};
+		C003FED72D959ACB00731C38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Raafat.AiTradingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AiTrading;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C003FEA62D959ACA00731C38 /* Build configuration list for PBXProject "AiTrading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C003FECD2D959ACB00731C38 /* Debug */,
+				C003FECE2D959ACB00731C38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C003FECF2D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTrading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C003FED02D959ACB00731C38 /* Debug */,
+				C003FED12D959ACB00731C38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C003FED22D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTradingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C003FED32D959ACB00731C38 /* Debug */,
+				C003FED42D959ACB00731C38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C003FED52D959ACB00731C38 /* Build configuration list for PBXNativeTarget "AiTradingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C003FED62D959ACB00731C38 /* Debug */,
+				C003FED72D959ACB00731C38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C0F158202D96F5B800605B38 /* XCLocalSwiftPackageReference "../../Downloads/generative-ai-swift-main" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../Downloads/generative-ai-swift-main";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C0F158212D96F7FD00605B38 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GoogleGenerativeAI;
+		};
+		C0F158232D96F82700605B38 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C003FEA32D959ACA00731C38 /* Project object */;
+}

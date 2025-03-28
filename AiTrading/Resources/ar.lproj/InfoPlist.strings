@@ -1,0 +1,5 @@
+/* App display name */
+"CFBundleDisplayName" = "تداول ذكي";
+
+/* Camera usage description */
+"NSCameraUsageDescription" = "نحتاج إلى الوصول إلى الكاميرا لالتقاط صور للرسوم البيانية وتحليلها بالذكاء الاصطناعي"; 

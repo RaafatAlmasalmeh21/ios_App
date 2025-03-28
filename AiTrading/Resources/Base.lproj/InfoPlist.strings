@@ -1,0 +1,5 @@
+/* App display name */
+"CFBundleDisplayName" = "AI Trading";
+
+/* Camera usage description */
+"NSCameraUsageDescription" = "We need access to your camera to capture charts for AI analysis"; 

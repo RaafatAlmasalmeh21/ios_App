@@ -1,0 +1,88 @@
+/* Home Screen */
+"app_title" = "AI Trading Assistant";
+"app_subtitle" = "Analyze charts with AI-powered insights";
+"how_it_works" = "How It Works";
+"how_it_works_description" = "Capture a candlestick chart using your camera, then use AI to get analysis at basic, intermediate, or advanced levels. Calculate optimal position sizes based on your risk tolerance.";
+
+/* Feature Buttons */
+"capture_chart" = "Capture Chart";
+"capture_chart_description" = "Take a photo of a chart for AI analysis";
+"trading_calculator" = "Trading Calculator";
+"trading_calculator_description" = "Calculate position size and risk metrics";
+"analysis_history" = "Analysis History";
+"analysis_history_description" = "View your previous chart analyses";
+
+/* Camera Screen */
+"chart_capture" = "Chart Capture";
+"position_chart" = "Position the chart within the frame";
+
+/* Analysis Levels */
+"basic" = "Basic";
+"intermediate" = "Intermediate";
+"advanced" = "Advanced";
+"basic_description" = "General market trend with basic recommendations";
+"intermediate_description" = "Entry/exit points and essential indicators";
+"advanced_description" = "Detailed insights and pattern analysis";
+
+/* Analysis Screen */
+"chart_analysis" = "Chart Analysis";
+"level" = "Level: %@";
+"analyzed_on" = "Analyzed on %@";
+"analyzing_chart" = "Analyzing chart...";
+"error_title" = "Error: %@";
+
+/* Analysis Results Sections */
+"market_trend" = "Market Trend";
+"confidence" = "Confidence:";
+"recommendation" = "Recommendation";
+"key_price_levels" = "Key Price Levels";
+"entry" = "Entry:";
+"exit" = "Exit:";
+"support" = "Support:";
+"resistance" = "Resistance:";
+"technical_indicators" = "Technical Indicators";
+"patterns_detected" = "Patterns Detected";
+"detailed_analysis" = "Detailed Analysis";
+
+/* Market Trends */
+"bullish" = "Bullish";
+"bearish" = "Bearish";
+"sideways" = "Sideways";
+
+/* Buttons */
+"done" = "Done";
+
+/* Calculator Screen */
+"trading_calculator_title" = "Trading Calculator";
+"price_levels" = "Price Levels";
+"entry_price" = "Entry Price";
+"stop_loss" = "Stop Loss";
+"take_profit" = "Take Profit";
+"account_settings" = "Account Settings";
+"trading_capital" = "Trading Capital";
+"risk_percentage" = "Risk Percentage";
+"calculation_results" = "Calculation Results";
+"risk_reward_ratio" = "Risk/Reward Ratio";
+"position_size" = "Position Size";
+"potential_profit" = "Potential Profit";
+"potential_loss" = "Potential Loss";
+"profit_loss_percentage" = "Profit/Loss %";
+"trade_assessment" = "Trade Assessment";
+"risk_assessment" = "Risk Assessment:";
+"good_trade" = "Good Trade";
+"average_trade" = "Average Trade";
+"poor_risk_reward" = "Poor Risk/Reward";
+"good_trade_description" = "A good trade typically has a risk/reward ratio of 1:2 or better, meaning the potential profit is at least twice the potential loss.";
+
+/* Recommendations */
+"bullish_basic" = "The market appears to be bullish. Consider looking for buying opportunities on dips.";
+"bearish_basic" = "The market shows bearish characteristics. Consider reducing exposure or looking for shorting opportunities.";
+"sideways_basic" = "The market is trading sideways. Wait for a breakout or consider range trading strategies.";
+
+"bullish_intermediate" = "Strong bullish signals detected. Entry point identified with support at key levels. Target the indicated exit point with a stop loss below support.";
+"bearish_intermediate" = "Clear bearish signals present. Consider short positions at the indicated entry with a stop loss above nearest resistance level.";
+"sideways_intermediate" = "Market is consolidating. Watch for breakout above resistance or breakdown below support for trading opportunities.";
+
+"bullish_advanced" = "Strong bullish confirmation with multiple technical indicators aligned. Pattern analysis shows a high probability setup. Consider the detailed entry and exit strategy with proper position sizing as calculated.";
+"bearish_advanced" = "Multiple bearish signals confirmed across different timeframes. Risk is elevated with key technical levels broken. Implement suggested position sizing and risk management.";
+"sideways_advanced" = "Complex consolidation pattern detected. Multiple support and resistance levels identified. Consider the options strategies or wait for the indicated breakout signals."; 
