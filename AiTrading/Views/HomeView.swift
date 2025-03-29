@@ -5,6 +5,11 @@ struct HomeView: View {
     @State private var showCalculator = false
     @State private var showHistory = false
     @ObservedObject private var localizationManager = LocalizationManager.shared
+    // Add state variables for image picker
+    @State private var showImagePicker = false
+    @State private var selectedImage: UIImage?
+    @State private var showAnalysisForSelectedImage = false
+    @State private var selectedAnalysisLevel: AnalysisLevel = .basic
     
     var body: some View {
         NavigationStack {
@@ -48,6 +53,16 @@ struct HomeView: View {
                             color: .blue
                         ) {
                             showCamera = true
+                        }
+                        
+                        // Add Gallery button
+                        FeatureButton(
+                            title: "select_chart".localized,
+                            icon: "photo.fill",
+                            description: "select_chart_description".localized,
+                            color: .purple
+                        ) {
+                            showImagePicker = true
                         }
                         
                         FeatureButton(
@@ -94,15 +109,41 @@ struct HomeView: View {
                 TradingCalculatorView()
             }
             .navigationDestination(isPresented: $showHistory) {
-                Text("Analysis History") // Placeholder for history view
-                    .navigationTitle("History")
+                LocalizedText("analysis_history") // Placeholder for history view
+                    .navigationTitle("history".localized)
+            }
+            .navigationDestination(isPresented: $showAnalysisForSelectedImage) {
+                if let image = selectedImage {
+                    AnalysisView(
+                        image: image,
+                        level: selectedAnalysisLevel
+                    )
+                }
+            }
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(selectedImage: $selectedImage)
+                    .onDisappear {
+                        if selectedImage != nil {
+                            // Show analysis level selection sheet when an image is selected
+                            showAnalysisLevelSelection()
+                        }
+                    }
             }
         }
         .localized() // Apply RTL layout for Arabic
+        .id(localizationManager.currentLanguage.rawValue) // Force view refresh when language changes
+    }
+    
+    // Function to handle showing analysis level selection
+    private func showAnalysisLevelSelection() {
+        // In a real app, you might want to show a proper level selection UI
+        // For simplicity, we'll just use the default level and proceed to analysis
+        showAnalysisForSelectedImage = true
     }
 }
 
 struct FeatureButton: View {
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     let title: String
     let icon: String
     let description: String
@@ -142,6 +183,7 @@ struct FeatureButton: View {
             .background(Color.white.opacity(0.1))
             .cornerRadius(16)
         }
+        .id("\(localizationManager.currentLanguage.rawValue)_\(title)")
     }
 }
 

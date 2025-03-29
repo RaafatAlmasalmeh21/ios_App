@@ -7,6 +7,8 @@
 /* Feature Buttons */
 "capture_chart" = "Capture Chart";
 "capture_chart_description" = "Take a photo of a chart for AI analysis";
+"select_chart" = "Select Chart";
+"select_chart_description" = "Choose a chart image from your photo library";
 "trading_calculator" = "Trading Calculator";
 "trading_calculator_description" = "Calculate position size and risk metrics";
 "analysis_history" = "Analysis History";
@@ -15,6 +17,10 @@
 /* Camera Screen */
 "chart_capture" = "Chart Capture";
 "position_chart" = "Position the chart within the frame";
+"select_from_gallery" = "Select from Gallery";
+"take_photo" = "Take Photo";
+"back" = "Back";
+"analyze" = "Analyze";
 
 /* Analysis Levels */
 "basic" = "Basic";
@@ -30,6 +36,7 @@
 "analyzed_on" = "Analyzed on %@";
 "analyzing_chart" = "Analyzing chart...";
 "error_title" = "Error: %@";
+"analysis" = "Analysis";
 
 /* Analysis Results Sections */
 "market_trend" = "Market Trend";
@@ -51,6 +58,7 @@
 
 /* Buttons */
 "done" = "Done";
+"cancel" = "Cancel";
 
 /* Calculator Screen */
 "trading_calculator_title" = "Trading Calculator";
@@ -85,4 +93,16 @@
 
 "bullish_advanced" = "Strong bullish confirmation with multiple technical indicators aligned. Pattern analysis shows a high probability setup. Consider the detailed entry and exit strategy with proper position sizing as calculated.";
 "bearish_advanced" = "Multiple bearish signals confirmed across different timeframes. Risk is elevated with key technical levels broken. Implement suggested position sizing and risk management.";
-"sideways_advanced" = "Complex consolidation pattern detected. Multiple support and resistance levels identified. Consider the options strategies or wait for the indicated breakout signals."; 
+"sideways_advanced" = "Complex consolidation pattern detected. Multiple support and resistance levels identified. Consider the options strategies or wait for the indicated breakout signals.";
+
+/* Language Selection */
+"select_language" = "Select Language";
+
+/* App Navigation */
+"history" = "History";
+
+/* AI Response View */
+"show_ai_response" = "Show AI Response";
+"hide_ai_response" = "Hide AI Response";
+"gemini_flash_analysis" = "Gemini 2.0 Flash Analysis";
+"powered_by_gemini" = "Analysis powered by Google Gemini 2.0 Flash"; 

@@ -25,13 +25,18 @@ class GeminiService: ObservableObject {
         }
         
         do {
-            // Create a prompt for the image analysis
+            // Get current language from LocalizationManager
+            let currentLanguage = LocalizationManager.shared.currentLanguage
+            
+            // Create a prompt for the image analysis with language specification
+            let responseLanguage = currentLanguage == .arabic ? "Arabic" : "English"
             let fullPrompt = "Analyze this trading chart image and provide: \n" +
                              "1. The market trend (bullish, bearish, or sideways)\n" +
                              "2. Key support and resistance levels\n" +
                              "3. Important technical patterns visible\n" +
                              "4. Trading recommendation\n" +
-                             "\(prompt)"
+                             "\(prompt)\n\n" +
+                             "Provide your response in \(responseLanguage) language."
             
             // Call the Gemini API with the image
             let response = try await model?.generateContent(fullPrompt, image)
@@ -56,14 +61,38 @@ class GeminiService: ObservableObject {
         result.trend = .sideways
         
         // Look for trend indicators in the response
-        if responseText.lowercased().contains("bullish") {
-            result.trend = .bullish
-        } else if responseText.lowercased().contains("bearish") {
-            result.trend = .bearish
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        if currentLanguage == .arabic {
+            // Check for Arabic trend indicators
+            if responseText.contains("صاعد") || responseText.lowercased().contains("bullish") {
+                result.trend = .bullish
+            } else if responseText.contains("هابط") || responseText.lowercased().contains("bearish") {
+                result.trend = .bearish
+            } else if responseText.contains("جانبي") || responseText.lowercased().contains("sideways") {
+                result.trend = .sideways
+            }
+        } else {
+            // Check for English trend indicators
+            if responseText.lowercased().contains("bullish") {
+                result.trend = .bullish
+            } else if responseText.lowercased().contains("bearish") {
+                result.trend = .bearish
+            } else if responseText.lowercased().contains("sideways") {
+                result.trend = .sideways
+            }
         }
         
         // Extract the recommendation (simplified approach)
         if let recommendationRange = responseText.range(of: "Trading recommendation:", options: .caseInsensitive) {
+            let startIndex = recommendationRange.upperBound
+            if let endIndex = responseText[startIndex...].firstIndex(of: "\n") {
+                result.recommendation = String(responseText[startIndex..<endIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+            } else {
+                result.recommendation = String(responseText[startIndex...]).trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        } else if let recommendationRange = responseText.range(of: "التوصية:", options: .caseInsensitive) {
+            // Try to find Arabic recommendation header
             let startIndex = recommendationRange.upperBound
             if let endIndex = responseText[startIndex...].firstIndex(of: "\n") {
                 result.recommendation = String(responseText[startIndex..<endIndex]).trimmingCharacters(in: .whitespacesAndNewlines)

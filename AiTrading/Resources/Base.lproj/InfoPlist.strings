@@ -2,4 +2,7 @@
 "CFBundleDisplayName" = "AI Trading";
 
 /* Camera usage description */
-"NSCameraUsageDescription" = "We need access to your camera to capture charts for AI analysis"; 
+"NSCameraUsageDescription" = "We need access to your camera to capture charts for AI analysis";
+
+/* Photo library usage description */
+"NSPhotoLibraryUsageDescription" = "We need access to your photo library to select charts for AI analysis"; 

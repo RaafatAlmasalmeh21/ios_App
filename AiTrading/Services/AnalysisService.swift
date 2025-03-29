@@ -59,15 +59,32 @@ class AnalysisService: ObservableObject {
     
     // Create prompt based on analysis level
     private func generatePromptForLevel(_ level: AnalysisLevel) -> String {
-        switch level {
-        case .basic:
-            return "Provide a basic analysis focusing just on the overall trend and a simple recommendation."
-            
-        case .intermediate:
-            return "Provide an intermediate analysis including support/resistance levels, entry/exit points, and basic technical indicators."
-            
-        case .advanced:
-            return "Provide an advanced analysis including pattern recognition, multiple timeframe analysis, detailed support/resistance levels, and comprehensive trading strategy."
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        // Base prompts on current language
+        if currentLanguage == .arabic {
+            switch level {
+            case .basic:
+                return "قم بتوفير تحليل أساسي يركز فقط على الاتجاه العام وتوصية بسيطة."
+                
+            case .intermediate:
+                return "قم بتوفير تحليل متوسط المستوى يشمل مستويات الدعم/المقاومة، نقاط الدخول/الخروج، والمؤشرات الفنية الأساسية."
+                
+            case .advanced:
+                return "قم بتوفير تحليل متقدم يشمل التعرف على الأنماط، تحليل الإطارات الزمنية المتعددة، مستويات الدعم/المقاومة التفصيلية، واستراتيجية تداول شاملة."
+            }
+        } else {
+            // English prompts (default)
+            switch level {
+            case .basic:
+                return "Provide a basic analysis focusing just on the overall trend and a simple recommendation."
+                
+            case .intermediate:
+                return "Provide an intermediate analysis including support/resistance levels, entry/exit points, and basic technical indicators."
+                
+            case .advanced:
+                return "Provide an advanced analysis including pattern recognition, multiple timeframe analysis, detailed support/resistance levels, and comprehensive trading strategy."
+            }
         }
     }
     
@@ -146,37 +163,82 @@ class AnalysisService: ObservableObject {
     
     // Generate basic recommendation
     private func generateBasicRecommendation(trend: MarketTrend) -> String {
-        switch trend {
-        case .bullish:
-            return "The market appears to be bullish. Consider looking for buying opportunities on dips."
-        case .bearish:
-            return "The market shows bearish characteristics. Consider reducing exposure or looking for shorting opportunities."
-        case .sideways:
-            return "The market is trading sideways. Wait for a breakout or consider range trading strategies."
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        if currentLanguage == .arabic {
+            // Use the localization system for recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_basic".localized
+            case .bearish:
+                return "bearish_basic".localized
+            case .sideways:
+                return "sideways_basic".localized
+            }
+        } else {
+            // English recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_basic".localized
+            case .bearish:
+                return "bearish_basic".localized
+            case .sideways:
+                return "sideways_basic".localized
+            }
         }
     }
     
     // Generate intermediate recommendation
     private func generateIntermediateRecommendation(trend: MarketTrend) -> String {
-        switch trend {
-        case .bullish:
-            return "Strong bullish signals detected. Entry point identified with support at key levels. Target the indicated exit point with a stop loss below support."
-        case .bearish:
-            return "Clear bearish signals present. Consider short positions at the indicated entry with a stop loss above nearest resistance level."
-        case .sideways:
-            return "Market is consolidating. Watch for breakout above resistance or breakdown below support for trading opportunities."
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        if currentLanguage == .arabic {
+            // Use the localization system for recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_intermediate".localized
+            case .bearish:
+                return "bearish_intermediate".localized
+            case .sideways:
+                return "sideways_intermediate".localized
+            }
+        } else {
+            // English recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_intermediate".localized
+            case .bearish:
+                return "bearish_intermediate".localized
+            case .sideways:
+                return "sideways_intermediate".localized
+            }
         }
     }
     
     // Generate advanced recommendation
     private func generateAdvancedRecommendation(trend: MarketTrend) -> String {
-        switch trend {
-        case .bullish:
-            return "Strong bullish confirmation with multiple technical indicators aligned. Pattern analysis shows a high probability setup. Consider the detailed entry and exit strategy with proper position sizing as calculated."
-        case .bearish:
-            return "Multiple bearish signals confirmed across different timeframes. Risk is elevated with key technical levels broken. Implement suggested position sizing and risk management."
-        case .sideways:
-            return "Complex consolidation pattern detected. Multiple support and resistance levels identified. Consider the options strategies or wait for the indicated breakout signals."
+        let currentLanguage = LocalizationManager.shared.currentLanguage
+        
+        if currentLanguage == .arabic {
+            // Use the localization system for recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_advanced".localized
+            case .bearish:
+                return "bearish_advanced".localized
+            case .sideways:
+                return "sideways_advanced".localized
+            }
+        } else {
+            // English recommendations
+            switch trend {
+            case .bullish:
+                return "bullish_advanced".localized
+            case .bearish:
+                return "bearish_advanced".localized
+            case .sideways:
+                return "sideways_advanced".localized
+            }
         }
     }
     

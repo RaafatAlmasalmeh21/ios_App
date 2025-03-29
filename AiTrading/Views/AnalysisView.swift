@@ -6,23 +6,24 @@ struct AnalysisView: View {
     
     @StateObject private var analysisService = AnalysisService()
     @State private var showCalculator = false
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 // Header section
                 VStack(alignment: .leading) {
-                    Text("Chart Analysis")
+                    LocalizedText("chart_analysis")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     
-                    Text("Level: \(level.rawValue)")
+                    Text(String(format: "level".localized, level.localizedRawValue))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     
                     // Analysis timestamp
                     if let result = analysisService.result {
-                        Text("Analyzed on \(result.timestamp, formatter: dateFormatter)")
+                        Text(String(format: "analyzed_on".localized, result.timestamp.formatted(date: .abbreviated, time: .shortened)))
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -47,7 +48,7 @@ struct AnalysisView: View {
                         ProgressView()
                             .scaleEffect(1.5)
                         
-                        Text("Analyzing chart...")
+                        LocalizedText("analyzing_chart")
                             .font(.headline)
                     }
                     .frame(maxWidth: .infinity)
@@ -58,7 +59,7 @@ struct AnalysisView: View {
                             .font(.largeTitle)
                             .foregroundColor(.red)
                         
-                        Text("Error: \(error)")
+                        Text(String(format: "error_title".localized, error))
                             .foregroundColor(.red)
                             .multilineTextAlignment(.center)
                     }
@@ -68,13 +69,13 @@ struct AnalysisView: View {
                     // Analysis results
                     Group {
                         // Market trend
-                        ResultSectionView(title: "Market Trend") {
+                        ResultSectionView(title: "market_trend".localized) {
                             HStack {
                                 Circle()
                                     .fill(result.trend.color)
                                     .frame(width: 14, height: 14)
                                 
-                                Text(result.trend.rawValue)
+                                Text(result.trend.localizedRawValue)
                                     .font(.headline)
                                 
                                 Spacer()
@@ -82,7 +83,7 @@ struct AnalysisView: View {
                                 // Confidence level
                                 if result.confidence > 0 {
                                     HStack(spacing: 4) {
-                                        Text("Confidence:")
+                                        LocalizedText("confidence")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                         
@@ -94,18 +95,18 @@ struct AnalysisView: View {
                         }
                         
                         // Recommendation
-                        ResultSectionView(title: "Recommendation") {
+                        ResultSectionView(title: "recommendation".localized) {
                             Text(result.recommendation)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         
                         // Entry and exit points
                         if !result.entryPoints.isEmpty || !result.exitPoints.isEmpty {
-                            ResultSectionView(title: "Key Price Levels") {
+                            ResultSectionView(title: "key_price_levels".localized) {
                                 VStack(alignment: .leading, spacing: 8) {
                                     if !result.entryPoints.isEmpty {
                                         HStack(alignment: .top) {
-                                            Text("Entry:")
+                                            LocalizedText("entry")
                                                 .foregroundColor(.secondary)
                                                 .frame(width: 80, alignment: .leading)
                                             
@@ -120,7 +121,7 @@ struct AnalysisView: View {
                                     
                                     if !result.exitPoints.isEmpty {
                                         HStack(alignment: .top) {
-                                            Text("Exit:")
+                                            LocalizedText("exit")
                                                 .foregroundColor(.secondary)
                                                 .frame(width: 80, alignment: .leading)
                                             
@@ -135,7 +136,7 @@ struct AnalysisView: View {
                                     
                                     if !result.supportLevels.isEmpty {
                                         HStack(alignment: .top) {
-                                            Text("Support:")
+                                            LocalizedText("support")
                                                 .foregroundColor(.secondary)
                                                 .frame(width: 80, alignment: .leading)
                                             
@@ -149,7 +150,7 @@ struct AnalysisView: View {
                                     
                                     if !result.resistanceLevels.isEmpty {
                                         HStack(alignment: .top) {
-                                            Text("Resistance:")
+                                            LocalizedText("resistance")
                                                 .foregroundColor(.secondary)
                                                 .frame(width: 80, alignment: .leading)
                                             
@@ -166,7 +167,7 @@ struct AnalysisView: View {
                         
                         // Technical indicators
                         if !result.indicators.isEmpty {
-                            ResultSectionView(title: "Technical Indicators") {
+                            ResultSectionView(title: "technical_indicators".localized) {
                                 VStack(alignment: .leading, spacing: 8) {
                                     ForEach(Array(result.indicators.keys.sorted()), id: \.self) { key in
                                         if let value = result.indicators[key] {
@@ -185,7 +186,7 @@ struct AnalysisView: View {
                         
                         // Patterns
                         if !result.patterns.isEmpty {
-                            ResultSectionView(title: "Patterns Detected") {
+                            ResultSectionView(title: "patterns_detected".localized) {
                                 VStack(alignment: .leading, spacing: 4) {
                                     ForEach(result.patterns, id: \.self) { pattern in
                                         HStack {
@@ -202,7 +203,7 @@ struct AnalysisView: View {
                         
                         // Detailed analysis for advanced level
                         if !result.detailedAnalysis.isEmpty {
-                            ResultSectionView(title: "Detailed Analysis") {
+                            ResultSectionView(title: "detailed_analysis".localized) {
                                 Text(result.detailedAnalysis)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
@@ -219,7 +220,7 @@ struct AnalysisView: View {
                         }) {
                             HStack {
                                 Image(systemName: "function")
-                                Text("Trading Calculator")
+                                LocalizedText("trading_calculator")
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -233,7 +234,7 @@ struct AnalysisView: View {
                 }
             }
         }
-        .navigationTitle("Analysis")
+        .navigationTitle("analysis".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -248,10 +249,18 @@ struct AnalysisView: View {
         .onAppear {
             analysisService.analyzeImage(image, level: level)
         }
-        .sheet(isPresented: $showCalculator) {
-            TradingCalculatorView(entryPrice: analysisService.result?.entryPoints.first ?? 0, 
-                                 exitPrice: analysisService.result?.exitPoints.first ?? 0)
+        .onChange(of: localizationManager.currentLanguage) { _ in
+            // Reanalyze the image when language changes
+            analysisService.analyzeImage(image, level: level)
         }
+        .navigationDestination(isPresented: $showCalculator) {
+            TradingCalculatorView(
+                entryPrice: analysisService.result?.entryPoints.first ?? 0.0,
+                exitPrice: analysisService.result?.exitPoints.first ?? 0.0
+            )
+        }
+        .localized() // Apply RTL layout for Arabic
+        .id(localizationManager.currentLanguage.rawValue) // Force view refresh when language changes
     }
     
     private var dateFormatter: DateFormatter {
@@ -264,6 +273,7 @@ struct AnalysisView: View {
 
 // Helper view for results sections
 struct ResultSectionView<Content: View>: View {
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     let title: String
     let content: Content
     
@@ -286,6 +296,7 @@ struct ResultSectionView<Content: View>: View {
         .background(Color.secondary.opacity(0.05))
         .cornerRadius(10)
         .padding(.horizontal)
+        .id("\(localizationManager.currentLanguage.rawValue)_\(title)")
     }
 }
 

@@ -2,4 +2,7 @@
 "CFBundleDisplayName" = "تداول ذكي";
 
 /* Camera usage description */
-"NSCameraUsageDescription" = "نحتاج إلى الوصول إلى الكاميرا لالتقاط صور للرسوم البيانية وتحليلها بالذكاء الاصطناعي"; 
+"NSCameraUsageDescription" = "نحتاج إلى الوصول إلى الكاميرا لالتقاط صور للرسوم البيانية وتحليلها بالذكاء الاصطناعي";
+
+/* Photo library usage description */
+"NSPhotoLibraryUsageDescription" = "نحتاج إلى الوصول إلى مكتبة الصور لاختيار الرسوم البيانية وتحليلها بالذكاء الاصطناعي"; 
