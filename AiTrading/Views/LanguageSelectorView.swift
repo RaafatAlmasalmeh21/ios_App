@@ -23,12 +23,14 @@ struct LanguageSelectorView: View {
         }
         .actionSheet(isPresented: $showLanguageSelector) {
             ActionSheet(
-                title: Text("Select Language"),
+                title: Text("select_language".localized),
                 buttons: Language.allCases.map { language in
                     .default(Text(language.displayName)) {
-                        localizationManager.switchLanguage(to: language)
+                        withAnimation {
+                            localizationManager.switchLanguage(to: language)
+                        }
                     }
-                } + [.cancel()]
+                } + [.cancel(Text("cancel".localized))]
             )
         }
     }

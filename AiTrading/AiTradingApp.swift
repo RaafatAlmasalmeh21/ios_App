@@ -12,18 +12,28 @@ struct AiTradingApp: App {
     @StateObject private var localizationManager = LocalizationManager.shared
     
     init() {
-        // Setup language from saved preferences or device settings
-        if let savedLanguageCode = UserDefaults.standard.string(forKey: "AppleLanguages"),
-           let language = Language(rawValue: savedLanguageCode) {
-            localizationManager.currentLanguage = language
+        // Set initial language if not already set
+        if UserDefaults.standard.object(forKey: "UserSelectedLanguage") == nil {
+            if let preferredLanguage = Locale.preferredLanguages.first,
+               preferredLanguage.starts(with: "ar") {
+                UserDefaults.standard.set("ar", forKey: "UserSelectedLanguage")
+            } else {
+                UserDefaults.standard.set("en", forKey: "UserSelectedLanguage")
+            }
         }
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environmentObject(localizationManager)
-                .environment(\.layoutDirection, localizationManager.currentLanguage.isRTL ? .rightToLeft : .leftToRight)
+                .onAppear {
+                    // Ensure localization settings are up-to-date
+                    if let languageCode = UserDefaults.standard.string(forKey: "UserSelectedLanguage"),
+                       let language = Language(rawValue: languageCode) {
+                        localizationManager.switchLanguage(to: language)
+                    }
+                }
         }
     }
 }

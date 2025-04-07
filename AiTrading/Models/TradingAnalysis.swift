@@ -2,28 +2,32 @@ import Foundation
 import SwiftUI
 
 enum AnalysisLevel: String, CaseIterable, Identifiable {
-    case basic = "Basic"
-    case intermediate = "Intermediate"
-    case advanced = "Advanced"
+    case basic = "basic"
+    case intermediate = "intermediate"
+    case advanced = "advanced"
     
     var id: String { self.rawValue }
     
     var description: String {
         switch self {
         case .basic:
-            return "General market trend with basic recommendations"
+            return "basic_description".localized
         case .intermediate:
-            return "Entry/exit points and essential indicators"
+            return "intermediate_description".localized
         case .advanced:
-            return "Detailed insights and pattern analysis"
+            return "advanced_description".localized
         }
+    }
+    
+    var localizedRawValue: String {
+        return self.rawValue.localized
     }
 }
 
 enum MarketTrend: String {
-    case bullish = "Bullish"
-    case bearish = "Bearish"
-    case sideways = "Sideways"
+    case bullish = "bullish"
+    case bearish = "bearish"
+    case sideways = "sideways"
     
     var color: Color {
         switch self {
@@ -31,6 +35,10 @@ enum MarketTrend: String {
         case .bearish: return .red
         case .sideways: return .yellow
         }
+    }
+    
+    var localizedRawValue: String {
+        return self.rawValue.localized
     }
 }
 

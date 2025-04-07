@@ -34,23 +34,9 @@
 		C003FEC52D959ACB00731C38 /* AiTradingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiTradingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C0A983A62D982C5600A711F2 /* Exceptions for "AiTrading" folder in "AiTrading" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-				Info.plist.backup,
-			);
-			target = C003FEAA2D959ACA00731C38 /* AiTrading */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C003FEAD2D959ACA00731C38 /* AiTrading */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				C0A983A62D982C5600A711F2 /* Exceptions for "AiTrading" folder in "AiTrading" target */,
-			);
 			path = AiTrading;
 			sourceTree = "<group>";
 		};

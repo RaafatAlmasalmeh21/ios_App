@@ -3,73 +3,97 @@ import SwiftUI
 struct AIResponseView: View {
     let analysisText: String
     @State private var showRawResponse = false
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
+            // Toggle button
             Button(action: {
                 showRawResponse.toggle()
             }) {
                 HStack {
-                    Image(systemName: "brain")
-                    Text(showRawResponse ? "Hide AI Response" : "Show AI Response")
-                    Spacer()
+                    Image(systemName: "ellipsis.message")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 16, weight: .medium))
+                    
+                    Text(showRawResponse ? "hide_ai_response".localized : "show_ai_response".localized)
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                    
                     Image(systemName: showRawResponse ? "chevron.up" : "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                    
+                    Spacer()
                 }
-                .padding(.vertical, 8)
-                .contentShape(Rectangle())
+                .padding(10)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.blue.opacity(0.05))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+                )
             }
             .buttonStyle(PlainButtonStyle())
+            .padding(.horizontal)
             
             if showRawResponse {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Gemini 2.0 Flash Analysis")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Image(systemName: "brain")
+                            .font(.title3)
+                            .foregroundColor(.blue)
+                        
+                        Text("gemini_flash_analysis".localized)
+                            .font(.headline)
+                    }
+                    .padding(.bottom, 5)
                     
                     Text(analysisText)
                         .font(.body)
-                        .padding()
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
+                        .lineSpacing(6)
+                        .padding(16)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(UIColor.secondarySystemBackground))
+                        )
                     
                     HStack {
                         Spacer()
-                        Text("Analysis powered by Google Gemini 2.0 Flash")
+                        
+                        Text("powered_by_gemini".localized)
                             .font(.caption)
                             .foregroundColor(.secondary)
-                            .italic()
+                        
+                        Image(systemName: "sparkles")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
                 }
-                .padding(.vertical, 8)
-                .transition(.move(edge: .top).combined(with: .opacity))
-                .animation(.easeInOut, value: showRawResponse)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(UIColor.systemBackground))
+                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+                )
+                .padding(.horizontal)
+                .padding(.vertical, 6)
             }
         }
-        .padding()
-        .background(Color.secondary.opacity(0.05))
-        .cornerRadius(10)
-        .padding(.horizontal)
+        .id(localizationManager.currentLanguage.rawValue)
     }
 }
 
+// Simple preview
 #Preview {
     AIResponseView(
-        analysisText: """
-        Analysis of Chart:
-        
-        Market Trend: Bullish
-        
-        Support and Resistance Levels:
-        - Support: $120.50, $118.75
-        - Resistance: $130.25, $135.40
-        
-        Technical Patterns:
-        - Cup and Handle formation
-        - RSI showing strength at 65
-        - Moving averages aligned bullishly
-        
-        Trading Recommendation:
-        Consider entering long positions with a stop loss at $119.00 and targets at $132.00 and $137.50. The chart shows strong momentum with increasing volume, suggesting continued upward movement.
-        """
+        analysisText: "Sample analysis text for preview purposes."
     )
 } 

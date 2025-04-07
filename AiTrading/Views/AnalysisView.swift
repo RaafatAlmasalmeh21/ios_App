@@ -69,97 +69,100 @@ struct AnalysisView: View {
                     // Analysis results
                     Group {
                         // Market trend
-                        ResultSectionView(title: "market_trend".localized) {
-                            HStack {
-                                Circle()
-                                    .fill(result.trend.color)
-                                    .frame(width: 14, height: 14)
-                                
-                                Text(result.trend.localizedRawValue)
-                                    .font(.headline)
-                                
-                                Spacer()
-                                
-                                // Confidence level
-                                if result.confidence > 0 {
-                                    HStack(spacing: 4) {
-                                        LocalizedText("confidence")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
+                        ResultSectionView(title: "market_trend".localized, iconName: "chart.bar.fill") {
+                            VStack(spacing: 16) {
+                                HStack {
+                                    Spacer()
+                                    VStack(spacing: 6) {
+                                        Circle()
+                                            .fill(result.trend.color)
+                                            .frame(width: 36, height: 36)
+                                            .overlay(
+                                                Image(systemName: result.trend == .bullish ? "arrow.up" : 
+                                                                   result.trend == .bearish ? "arrow.down" : "arrow.left.and.right")
+                                                    .font(.system(size: 18, weight: .bold))
+                                                    .foregroundColor(.white)
+                                            )
                                         
-                                        Text(String(format: "%.1f%%", result.confidence * 100))
-                                            .font(.caption.bold())
+                                        Text(result.trend.localizedRawValue)
+                                            .font(.headline.bold())
+                                            .foregroundColor(result.trend.color)
+                                    }
+                                    Spacer()
+                                }
+                                
+                                // Confidence indicator
+                                if result.confidence > 0 {
+                                    VStack(spacing: 4) {
+                                        HStack {
+                                            LocalizedText("confidence")
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                            
+                                            Spacer()
+                                            
+                                            Text(String(format: "%.1f%%", result.confidence * 100))
+                                                .font(.subheadline.bold())
+                                        }
+                                        
+                                        // Confidence progress bar
+                                        GeometryReader { geometry in
+                                            ZStack(alignment: .leading) {
+                                                Rectangle()
+                                                    .fill(Color.gray.opacity(0.3))
+                                                    .frame(width: geometry.size.width, height: 8)
+                                                    .cornerRadius(4)
+                                                
+                                                Rectangle()
+                                                    .fill(result.trend.color)
+                                                    .frame(width: geometry.size.width * CGFloat(result.confidence), height: 8)
+                                                    .cornerRadius(4)
+                                            }
+                                        }
+                                        .frame(height: 8)
                                     }
                                 }
                             }
                         }
                         
                         // Recommendation
-                        ResultSectionView(title: "recommendation".localized) {
-                            Text(result.recommendation)
-                                .fixedSize(horizontal: false, vertical: true)
+                        ResultSectionView(title: "recommendation".localized, iconName: "hand.thumbsup.fill") {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(result.recommendation)
+                                    .font(.body)
+                                    .lineSpacing(6)
+                                    .padding(16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color(UIColor.secondarySystemBackground))
+                                    )
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                         
                         // Entry and exit points
-                        if !result.entryPoints.isEmpty || !result.exitPoints.isEmpty {
-                            ResultSectionView(title: "key_price_levels".localized) {
-                                VStack(alignment: .leading, spacing: 8) {
+                        if !result.entryPoints.isEmpty || !result.exitPoints.isEmpty || !result.supportLevels.isEmpty || !result.resistanceLevels.isEmpty {
+                            ResultSectionView(title: "key_price_levels".localized, iconName: "dollarsign.circle.fill") {
+                                VStack(alignment: .leading, spacing: 16) {
+                                    // Entry points
                                     if !result.entryPoints.isEmpty {
-                                        HStack(alignment: .top) {
-                                            LocalizedText("entry")
-                                                .foregroundColor(.secondary)
-                                                .frame(width: 80, alignment: .leading)
-                                            
-                                            VStack(alignment: .leading) {
-                                                ForEach(result.entryPoints, id: \.self) { point in
-                                                    Text(String(format: "%.2f", point))
-                                                        .foregroundColor(.green)
-                                                }
-                                            }
-                                        }
+                                        PriceLevelRowView(title: "entry", values: result.entryPoints, color: .green, icon: "arrow.down.to.line")
                                     }
                                     
+                                    // Exit points
                                     if !result.exitPoints.isEmpty {
-                                        HStack(alignment: .top) {
-                                            LocalizedText("exit")
-                                                .foregroundColor(.secondary)
-                                                .frame(width: 80, alignment: .leading)
-                                            
-                                            VStack(alignment: .leading) {
-                                                ForEach(result.exitPoints, id: \.self) { point in
-                                                    Text(String(format: "%.2f", point))
-                                                        .foregroundColor(.blue)
-                                                }
-                                            }
-                                        }
+                                        PriceLevelRowView(title: "exit", values: result.exitPoints, color: .blue, icon: "arrow.up.right.square")
                                     }
                                     
+                                    // Support levels
                                     if !result.supportLevels.isEmpty {
-                                        HStack(alignment: .top) {
-                                            LocalizedText("support")
-                                                .foregroundColor(.secondary)
-                                                .frame(width: 80, alignment: .leading)
-                                            
-                                            VStack(alignment: .leading) {
-                                                ForEach(result.supportLevels, id: \.self) { level in
-                                                    Text(String(format: "%.2f", level))
-                                                }
-                                            }
-                                        }
+                                        PriceLevelRowView(title: "support", values: result.supportLevels, color: .purple, icon: "arrow.down")
                                     }
                                     
+                                    // Resistance levels
                                     if !result.resistanceLevels.isEmpty {
-                                        HStack(alignment: .top) {
-                                            LocalizedText("resistance")
-                                                .foregroundColor(.secondary)
-                                                .frame(width: 80, alignment: .leading)
-                                            
-                                            VStack(alignment: .leading) {
-                                                ForEach(result.resistanceLevels, id: \.self) { level in
-                                                    Text(String(format: "%.2f", level))
-                                                }
-                                            }
-                                        }
+                                        PriceLevelRowView(title: "resistance", values: result.resistanceLevels, color: .orange, icon: "arrow.up")
                                     }
                                 }
                             }
@@ -167,16 +170,34 @@ struct AnalysisView: View {
                         
                         // Technical indicators
                         if !result.indicators.isEmpty {
-                            ResultSectionView(title: "technical_indicators".localized) {
-                                VStack(alignment: .leading, spacing: 8) {
+                            ResultSectionView(title: "technical_indicators".localized, iconName: "waveform.path.ecg") {
+                                LazyVGrid(columns: [
+                                    GridItem(.flexible(), spacing: 16),
+                                    GridItem(.flexible(), spacing: 16)
+                                ], spacing: 16) {
                                     ForEach(Array(result.indicators.keys.sorted()), id: \.self) { key in
                                         if let value = result.indicators[key] {
-                                            HStack(alignment: .top) {
-                                                Text("\(key):")
+                                            VStack(alignment: .leading, spacing: 6) {
+                                                Text(key)
+                                                    .font(.subheadline)
                                                     .foregroundColor(.secondary)
-                                                    .frame(width: 80, alignment: .leading)
+                                                    .lineLimit(1)
                                                 
-                                                Text(value)
+                                                HStack {
+                                                    let isPositive = value.contains("Bullish") || value.contains("Above")
+                                                    let isNegative = value.contains("Bearish") || value.contains("Below")
+                                                    
+                                                    Text(value)
+                                                        .font(.system(.body, design: .rounded).bold())
+                                                        .foregroundColor(isPositive ? .green : (isNegative ? .red : .primary))
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    Spacer()
+                                                }
+                                                .padding(.vertical, 4)
+                                                .padding(.horizontal, 8)
+                                                .background(Color.secondary.opacity(0.1))
+                                                .cornerRadius(6)
                                             }
                                         }
                                     }
@@ -186,8 +207,11 @@ struct AnalysisView: View {
                         
                         // Patterns
                         if !result.patterns.isEmpty {
-                            ResultSectionView(title: "patterns_detected".localized) {
-                                VStack(alignment: .leading, spacing: 4) {
+                            ResultSectionView(title: "patterns_detected".localized, iconName: "eye.fill") {
+                                LazyVGrid(columns: [
+                                    GridItem(.flexible(), spacing: 12),
+                                    GridItem(.flexible(), spacing: 12)
+                                ], spacing: 12) {
                                     ForEach(result.patterns, id: \.self) { pattern in
                                         HStack {
                                             Image(systemName: "checkmark.circle.fill")
@@ -195,7 +219,21 @@ struct AnalysisView: View {
                                                 .font(.caption)
                                             
                                             Text(pattern)
+                                                .font(.callout)
+                                                .lineLimit(2)
+                                                .foregroundColor(.primary)
+                                            
+                                            Spacer()
                                         }
+                                        .padding(10)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .fill(Color.green.opacity(0.1))
+                                        )
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                        )
                                     }
                                 }
                             }
@@ -203,9 +241,19 @@ struct AnalysisView: View {
                         
                         // Detailed analysis for advanced level
                         if !result.detailedAnalysis.isEmpty {
-                            ResultSectionView(title: "detailed_analysis".localized) {
-                                Text(result.detailedAnalysis)
-                                    .fixedSize(horizontal: false, vertical: true)
+                            ResultSectionView(title: "detailed_analysis".localized, iconName: "info.circle.fill") {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(result.detailedAnalysis)
+                                        .font(.body)
+                                        .lineSpacing(6)
+                                        .padding(16)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color(UIColor.secondarySystemBackground))
+                                        )
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
                             }
                         }
                         
@@ -220,16 +268,29 @@ struct AnalysisView: View {
                         }) {
                             HStack {
                                 Image(systemName: "function")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                
                                 LocalizedText("trading_calculator")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
                             }
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .padding(.vertical, 14)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.blue, Color.blue.opacity(0.8)]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(12)
+                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 3)
                         }
+                        .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
-                        .padding(.top, 8)
+                        .padding(.top, 16)
+                        .padding(.bottom, 8)
                     }
                 }
             }
@@ -249,7 +310,7 @@ struct AnalysisView: View {
         .onAppear {
             analysisService.analyzeImage(image, level: level)
         }
-        .onChange(of: localizationManager.currentLanguage) { _ in
+        .onChange(of: localizationManager.currentLanguage) { oldValue, newValue in
             // Reanalyze the image when language changes
             analysisService.analyzeImage(image, level: level)
         }
@@ -276,26 +337,45 @@ struct ResultSectionView<Content: View>: View {
     @ObservedObject private var localizationManager = LocalizationManager.shared
     let title: String
     let content: Content
+    let iconName: String
     
-    init(title: String, @ViewBuilder content: () -> Content) {
+    init(title: String, iconName: String = "chart.bar.fill", @ViewBuilder content: () -> Content) {
         self.title = title
+        self.iconName = iconName
         self.content = content()
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(title)
-                .font(.headline)
-                .foregroundColor(.primary)
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: iconName)
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
+            
+            Divider()
+                .background(Color.blue.opacity(0.5))
             
             content
                 .padding(.horizontal, 4)
-                .padding(.bottom, 8)
+                .padding(.bottom, 4)
         }
         .padding()
-        .background(Color.secondary.opacity(0.05))
-        .cornerRadius(10)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(UIColor.systemBackground))
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+        )
         .padding(.horizontal)
+        .padding(.vertical, 6)
         .id("\(localizationManager.currentLanguage.rawValue)_\(title)")
     }
 }
@@ -307,6 +387,60 @@ private let dateFormatter: DateFormatter = {
     formatter.timeStyle = .short
     return formatter
 }()
+
+// Price tag component for displaying price values
+struct PriceTag: View {
+    let price: Double
+    let color: Color
+    
+    var body: some View {
+        Text(String(format: "%.2f", price))
+            .font(.system(.body, design: .monospaced))
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(color.opacity(0.15))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(color.opacity(0.5), lineWidth: 1)
+            )
+    }
+}
+
+// Price level row component for displaying price levels
+struct PriceLevelRowView: View {
+    let title: String
+    let values: [Double]
+    let color: Color
+    let icon: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(color)
+                    .frame(width: 22)
+                
+                Text(title.localized)
+                    .font(.subheadline.bold())
+                    .foregroundColor(.primary)
+            }
+            
+            if !values.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(values, id: \.self) { value in
+                            PriceTag(price: value, color: color)
+                        }
+                    }
+                    .padding(.leading, 26)
+                }
+            }
+        }
+    }
+}
 
 #Preview {
     NavigationStack {

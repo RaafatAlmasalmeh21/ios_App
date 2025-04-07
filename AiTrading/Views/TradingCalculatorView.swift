@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TradingCalculatorView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     
     // Default values from analysis
     @State private var entryPrice: Double
@@ -39,7 +40,7 @@ struct TradingCalculatorView: View {
                 // Price inputs
                 Section {
                     HStack {
-                        Text("Entry Price")
+                        LocalizedText("entry_price")
                         Spacer()
                         TextField("0.00", value: $entryPrice, format: .number)
                             .keyboardType(.decimalPad)
@@ -47,7 +48,7 @@ struct TradingCalculatorView: View {
                     }
                     
                     HStack {
-                        Text("Stop Loss")
+                        LocalizedText("stop_loss")
                         Spacer()
                         TextField("0.00", value: $stopLossPrice, format: .number)
                             .keyboardType(.decimalPad)
@@ -55,20 +56,20 @@ struct TradingCalculatorView: View {
                     }
                     
                     HStack {
-                        Text("Take Profit")
+                        LocalizedText("take_profit")
                         Spacer()
                         TextField("0.00", value: $exitPrice, format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                     }
                 } header: {
-                    Text("Price Levels")
+                    LocalizedText("price_levels")
                 }
                 
                 // Account settings
                 Section {
                     HStack {
-                        Text("Trading Capital")
+                        LocalizedText("trading_capital")
                         Spacer()
                         TextField("10000.00", value: $tradingCapital, format: .currency(code: "USD"))
                             .keyboardType(.decimalPad)
@@ -76,85 +77,88 @@ struct TradingCalculatorView: View {
                     }
                     
                     HStack {
-                        Text("Risk Percentage")
+                        LocalizedText("risk_percentage")
                         Spacer()
                         
                         // Stepper for risk percentage
                         Stepper("\(riskPercentage, specifier: "%.1f")%", value: $riskPercentage, in: 0.1...10.0, step: 0.1)
                     }
                 } header: {
-                    Text("Account Settings")
+                    LocalizedText("account_settings")
                 }
                 
                 // Calculation results
                 Section {
-                    ResultRow(label: "Risk/Reward Ratio", value: String(format: "%.2f", riskCalculation.riskRewardRatio))
+                    ResultRow(label: "risk_reward_ratio".localized, value: String(format: "%.2f", riskCalculation.riskRewardRatio))
                     
-                    ResultRow(label: "Position Size", value: String(format: "%.2f units", riskCalculation.positionSize))
+                    ResultRow(label: "position_size".localized, value: String(format: "%.2f units", riskCalculation.positionSize))
                     
-                    ResultRow(label: "Potential Profit", value: CalculatorService.formatCurrency(riskCalculation.potentialProfit))
+                    ResultRow(label: "potential_profit".localized, value: CalculatorService.formatCurrency(riskCalculation.potentialProfit))
                     
-                    ResultRow(label: "Potential Loss", value: CalculatorService.formatCurrency(riskCalculation.potentialLoss))
+                    ResultRow(label: "potential_loss".localized, value: CalculatorService.formatCurrency(riskCalculation.potentialLoss))
                     
                     if entryPrice > 0 && exitPrice > 0 {
                         let profitPercentage = CalculatorService.calculateProfitPercentage(entryPrice: entryPrice, exitPrice: exitPrice)
                         ResultRow(
-                            label: "Profit/Loss %",
+                            label: "profit_loss_percentage".localized,
                             value: CalculatorService.formatPercentage(profitPercentage),
                             valueColor: profitPercentage >= 0 ? .green : .red
                         )
                     }
                 } header: {
-                    Text("Calculation Results")
+                    LocalizedText("calculation_results")
                 }
                 
                 // Risk assessment
                 Section {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
-                            Text("Risk Assessment:")
+                            LocalizedText("risk_assessment")
                                 .fontWeight(.medium)
                             
                             Spacer()
                             
                             // Simple risk assessment label
                             if riskCalculation.riskRewardRatio >= 2 {
-                                Text("Good Trade")
+                                LocalizedText("good_trade")
                                     .foregroundColor(.green)
                                     .fontWeight(.bold)
                             } else if riskCalculation.riskRewardRatio >= 1 {
-                                Text("Average Trade")
+                                LocalizedText("average_trade")
                                     .foregroundColor(.yellow)
                                     .fontWeight(.bold)
                             } else {
-                                Text("Poor Risk/Reward")
+                                LocalizedText("poor_risk_reward")
                                     .foregroundColor(.red)
                                     .fontWeight(.bold)
                             }
                         }
                         
-                        Text("A good trade typically has a risk/reward ratio of 1:2 or better, meaning the potential profit is at least twice the potential loss.")
+                        LocalizedText("good_trade_description")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
                 } header: {
-                    Text("Trade Assessment")
+                    LocalizedText("trade_assessment")
                 }
             }
-            .navigationTitle("Trading Calculator")
+            .navigationTitle("trading_calculator_title".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button("done".localized) {
                         dismiss()
                     }
                 }
             }
         }
+        .id(localizationManager.currentLanguage.rawValue) // Force refresh when language changes
+        .localized() // Apply RTL for Arabic
     }
 }
 
 struct ResultRow: View {
+    @ObservedObject private var localizationManager = LocalizationManager.shared
     let label: String
     let value: String
     var valueColor: Color = .primary
@@ -167,6 +171,7 @@ struct ResultRow: View {
                 .foregroundColor(valueColor)
                 .fontWeight(.medium)
         }
+        .id("\(localizationManager.currentLanguage.rawValue)_\(label)")
     }
 }
 

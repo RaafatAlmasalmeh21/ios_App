@@ -1,0 +1,17 @@
+HOW TO FIX THE INFO.PLIST DUPLICATION ERROR
+
+This is a step-by-step guide to manually fix the "Multiple commands produce Info.plist" error:
+
+1. Open Xcode
+2. Select the AiTrading project in the Project Navigator
+3. Select the AiTrading target
+4. Go to the "Build Phases" tab
+5. Expand the "Copy Bundle Resources" section
+6. Look for "Info.plist" entry and REMOVE it (by clicking the - button)
+7. Leave Info.plist in the "Compile Sources" section if it's there
+8. Clean the build folder (Option + Product -> Clean Build Folder...)
+9. Try building again
+
+EXPLANATION: The issue occurs because Info.plist is being included in both the "Copy Bundle Resources" 
+phase and also being processed by another build phase. It should typically only be processed 
+and not copied directly.
