@@ -6,6 +6,7 @@ struct AnalysisView: View {
     
     @StateObject private var analysisService = AnalysisService()
     @State private var showCalculator = false
+    @State private var showChartAI = false
     @ObservedObject private var localizationManager = LocalizationManager.shared
     
     var body: some View {
@@ -291,6 +292,35 @@ struct AnalysisView: View {
                         .padding(.horizontal)
                         .padding(.top, 16)
                         .padding(.bottom, 8)
+                        
+                        // Chart AI button
+                        Button(action: {
+                            showChartAI = true
+                        }) {
+                            HStack {
+                                Image(systemName: "brain")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                
+                                Text("Chart AI")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.purple, Color.purple.opacity(0.8)]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(12)
+                            .shadow(color: Color.purple.opacity(0.3), radius: 5, x: 0, y: 3)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal)
+                        .padding(.bottom, 8)
                     }
                 }
             }
@@ -319,6 +349,9 @@ struct AnalysisView: View {
                 entryPrice: analysisService.result?.entryPoints.first ?? 0.0,
                 exitPrice: analysisService.result?.exitPoints.first ?? 0.0
             )
+        }
+        .navigationDestination(isPresented: $showChartAI) {
+            ChartAIView(image: image)
         }
         .localized() // Apply RTL layout for Arabic
         .id(localizationManager.currentLanguage.rawValue) // Force view refresh when language changes
